@@ -18,8 +18,8 @@ public class Pregunta {
     //private List<String> preguntas;
     @Column(name="tipo_pregunta")
     private TipoPreguntaEnum tipoPregunta;
-    @Column(name="tipo_pregunta_id")
-    private Integer tipoPreguntaId; 
+    //@Column(name="tipo_pregunta_id")
+    //private Integer tipoPreguntaId; 
 
     public enum TipoPreguntaEnum {
         VIOLENCIA_FISICA(1), VIOLENCIA_PSICO(2), VIOLENCIA_SEXUAL(3), VIOLENCIA_ECO(4);
@@ -72,12 +72,6 @@ public class Pregunta {
         this.pregunta = pregunta;
     }
 
-    public Integer getTipoPreguntaId() {
-        return tipoPreguntaId;
-    }
 
-    public void setTipoPreguntaId(Integer tipoPreguntaId) {
-        this.tipoPreguntaId = tipoPreguntaId;
-    }
 
 }

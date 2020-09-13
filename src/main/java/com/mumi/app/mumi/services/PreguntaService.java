@@ -42,7 +42,7 @@ public class PreguntaService {
         return null;
     }
 
-    public void obtenerPreguntaSegunTipoDeViolencia(Integer tipoPreguntaId) {
+    public TipoPreguntaEnum obtenerPreguntaSegunTipoDeViolencia(Integer tipoPreguntaId) {
 
         switch (tipoPreguntaId) {
             case 1:
@@ -63,6 +63,7 @@ public class PreguntaService {
             default:
                 break;
         }
+        return null;
 
         // List<Pregunta> preguntasTipo = this.listarPreguntas().stream().filter(t ->
         // t.getTipoPregunta().contains(tipoPreguntaId)).collect(Collectors.toList());

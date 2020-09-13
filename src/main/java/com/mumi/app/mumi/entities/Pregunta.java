@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "pregunta")
 public class Pregunta {
@@ -24,6 +26,7 @@ public class Pregunta {
     private String pregunta; // refiere a la pregunta en si (individual)
     @Column(name = "tipo_pregunta")
     private TipoPreguntaEnum tipoPregunta;
+    @JsonIgnore
     @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Opcion> opciones; // una pregunta tiene varias opciones
     @ManyToOne

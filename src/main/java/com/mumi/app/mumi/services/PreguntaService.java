@@ -3,6 +3,7 @@ package com.mumi.app.mumi.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.mumi.app.mumi.entities.Cuestionario;
 import com.mumi.app.mumi.entities.Pregunta;
 import com.mumi.app.mumi.entities.Pregunta.TipoPreguntaEnum;
 import com.mumi.app.mumi.repositories.PreguntaRepository;

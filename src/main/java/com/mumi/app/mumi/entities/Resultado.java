@@ -17,16 +17,19 @@ public class Resultado {
     @Column(name = "resultado_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "indice_violencia_id")
+    private Integer indiceViolenciaId;
     @Column(name = "indice_violencia")
-    private IndiceViolenciaEnum indiceViolencia;
+    private String indiceViolencia;
+    @Column(name = "tipo_violencia_id")
+    private Integer tipoViolenciaId;
+    @Column(name = "tipo_violencia")
+    private String tipoViolencia;
     @Column(name = "score_final")
     private Integer scoreFinal;
     @OneToOne
-    @PrimaryKeyJoinColumn(name="usuaria_id")
+    @PrimaryKeyJoinColumn(name = "usuaria_id")
     private Usuaria usuariaId;
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "cuestionario_id")
-    private Cuestionario cuestionarioId;
 
     public enum IndiceViolenciaEnum {
         LEVE(5), MODERADO(10), GRAVE(20);
@@ -92,14 +95,6 @@ public class Resultado {
         this.id = id;
     }
 
-    public IndiceViolenciaEnum getIndiceViolencia() {
-        return indiceViolencia;
-    }
-
-    public void setIndiceViolencia(IndiceViolenciaEnum indiceViolencia) {
-        this.indiceViolencia = indiceViolencia;
-    }
-
     public Integer getScoreFinal() {
         return scoreFinal;
     }
@@ -116,21 +111,48 @@ public class Resultado {
         this.usuariaId = usuariaId;
     }
 
-    public Resultado(Integer id, IndiceViolenciaEnum indiceViolencia, Integer scoreFinal, Usuaria usuariaId,
-            Cuestionario cuestionarioId) {
-        this.id = id;
+    public Integer getIndiceViolenciaId() {
+        return indiceViolenciaId;
+    }
+
+    public void setIndiceViolenciaId(Integer indiceViolenciaId) {
+        this.indiceViolenciaId = indiceViolenciaId;
+    }
+
+    public String getIndiceViolencia() {
+        return indiceViolencia;
+    }
+
+    public void setIndiceViolencia(String indiceViolencia) {
         this.indiceViolencia = indiceViolencia;
+    }
+
+    public Integer getTipoViolenciaId() {
+        return tipoViolenciaId;
+    }
+
+    public void setTipoViolenciaId(Integer tipoViolenciaId) {
+        this.tipoViolenciaId = tipoViolenciaId;
+    }
+
+    public String getTipoViolencia() {
+        return tipoViolencia;
+    }
+
+    public void setTipoViolencia(String tipoViolencia) {
+        this.tipoViolencia = tipoViolencia;
+    }
+
+    public Resultado(Integer id, Integer indiceViolenciaId, String indiceViolencia, Integer tipoViolenciaId,
+            String tipoViolencia, Integer scoreFinal, Usuaria usuariaId) {
+        this.id = id;
+        this.indiceViolenciaId = indiceViolenciaId;
+        this.indiceViolencia = indiceViolencia;
+        this.tipoViolenciaId = tipoViolenciaId;
+        this.tipoViolencia = tipoViolencia;
         this.scoreFinal = scoreFinal;
         this.usuariaId = usuariaId;
-        this.cuestionarioId = cuestionarioId;
     }
 
-    public Cuestionario getCuestionarioId() {
-        return cuestionarioId;
-    }
-
-    public void setCuestionarioId(Cuestionario cuestionarioId) {
-        this.cuestionarioId = cuestionarioId;
-    }
 
 }

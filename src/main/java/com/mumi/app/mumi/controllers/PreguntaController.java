@@ -1,17 +1,14 @@
 package com.mumi.app.mumi.controllers;
 
+import java.util.List;
+
 import com.mumi.app.mumi.entities.Pregunta;
-import com.mumi.app.mumi.entities.Pregunta.TipoPreguntaEnum;
 import com.mumi.app.mumi.models.response.GenericResponse;
 import com.mumi.app.mumi.services.PreguntaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PreguntaController {
@@ -31,11 +28,9 @@ public class PreguntaController {
 
     }
 
-    @GetMapping("/api/preguntas/{id}")
-    public ResponseEntity<TipoPreguntaEnum> obtenerTodasLasPreguntas(@PathVariable Integer id) {
-        return ResponseEntity.ok(preguntaService.obtenerPreguntaSegunTipoDeViolencia(id));
-
+    @GetMapping("/api/preguntas")
+    public ResponseEntity<List<Pregunta>> listarPreguntas() {
+        return ResponseEntity.ok(preguntaService.listarPreguntas());
     }
 
-    
 }

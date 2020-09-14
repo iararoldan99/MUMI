@@ -1,20 +1,18 @@
 package com.mumi.app.mumi.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "pregunta")
@@ -24,42 +22,9 @@ public class Pregunta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String pregunta; // refiere a la pregunta en si (individual)
-    @Column(name = "tipo_pregunta")
-    private TipoPreguntaEnum tipoPregunta;
     @JsonIgnore
-    @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Opcion> opciones; // una pregunta tiene varias opciones
-    @ManyToOne
-    @JoinColumn(name = "cuestionario_id")
-    private Cuestionario cuestionarioId;
-
-
-    public enum TipoPreguntaEnum {
-        VIOLENCIA_FISICA(1), VIOLENCIA_PSICO(2), VIOLENCIA_SEXUAL(3), VIOLENCIA_ECO(4);
-
-        private final Integer value;
-
-        // NOTE: Enum constructor tiene que estar en privado
-        private TipoPreguntaEnum(Integer value) {
-            this.value = value;
-        }
-
-        public Integer getValue() {
-            return value;
-        }
-
-        public static TipoPreguntaEnum parse(Integer id) {
-            TipoPreguntaEnum status = null; // Default
-            for (TipoPreguntaEnum item : TipoPreguntaEnum.values()) {
-                if (item.getValue().equals(id)) {
-                    status = item;
-                    break;
-                }
-            }
-            return status;
-        }
-
-    }
+    @ManyToMany(mappedBy = "preguntas")
+    private List<Categoria> categorias = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -67,14 +32,6 @@ public class Pregunta {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public TipoPreguntaEnum getTipoPregunta() {
-        return tipoPregunta;
-    }
-
-    public void setTipoPregunta(TipoPreguntaEnum tipoPregunta) {
-        this.tipoPregunta = tipoPregunta;
     }
 
     public String getPregunta() {
@@ -85,34 +42,29 @@ public class Pregunta {
         this.pregunta = pregunta;
     }
 
-    public List<Opcion> getOpciones() {
-        return opciones;
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setOpciones(List<Opcion> opciones) {
-        this.opciones = opciones;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
-    
-
-    public Cuestionario getCuestionarioId() {
-        return cuestionarioId;
-    }
-
-    public void setCuestionarioId(Cuestionario cuestionarioId) {
-        this.cuestionarioId = cuestionarioId;
-    }
-
-    public Pregunta(Integer id, String pregunta, TipoPreguntaEnum tipoPregunta, List<Opcion> opciones,
-            Cuestionario cuestionarioId) {
+    public Pregunta(Integer id, String pregunta, List<Categoria> categorias) {
         this.id = id;
         this.pregunta = pregunta;
-        this.tipoPregunta = tipoPregunta;
-        this.opciones = opciones;
-        this.cuestionarioId = cuestionarioId;
+        this.categorias = categorias;
     }
 
-	public Pregunta() {
-	}
+    public Pregunta(){
+
+    }
+
+    public void agregarCategoria(Categoria categoria) {
+        this.categorias.add(categoria);
+        categoria.getPreguntas().add(this);
+    }
+
+   
 
 }

@@ -49,6 +49,10 @@ public class PreguntaService {
         return null;
     }
 
+    public Pregunta actualizarPregunta(Pregunta pregunta) {
+        return preguntaRepo.save(pregunta);
+    }
+
    
 
 }

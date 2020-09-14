@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "categoria") // refiere a la categoria de preguntas: violencia fisica, psico, etc

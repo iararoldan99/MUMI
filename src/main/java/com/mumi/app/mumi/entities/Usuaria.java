@@ -18,6 +18,8 @@ public class Usuaria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String nombre;
+
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name="cuestionario_id")
     private Cuestionario cuestionarioId;

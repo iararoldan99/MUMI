@@ -1,6 +1,7 @@
 package com.mumi.app.mumi.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.mumi.app.mumi.entities.Opcion;
 import com.mumi.app.mumi.entities.Opcion.OpcionEnum;
@@ -39,6 +40,20 @@ public class OpcionService {
     public List<Opcion> obtenerOpciones() {
         return (opcionRepo.findAll());
 
+    }
+
+    public Opcion buscarPorId(Integer id) {
+        Optional<Opcion> op = opcionRepo.findById(id);
+
+        if (op.isPresent())
+            return op.get();
+        else
+            return null;
+
+    }
+
+    public Opcion actualizarOpcion(Opcion opcion) {
+        return opcionRepo.save(opcion);
     }
 
 }

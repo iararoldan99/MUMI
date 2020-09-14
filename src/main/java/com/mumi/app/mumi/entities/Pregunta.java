@@ -3,11 +3,12 @@ package com.mumi.app.mumi.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -25,6 +26,17 @@ public class Pregunta {
     @JsonIgnore
     @ManyToMany(mappedBy = "preguntas")
     private List<Categoria> categorias = new ArrayList<>();
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name="pregunta_id")
+    private Respuesta respuesta; 
+
+    /*
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "respuesta_x_pregunta", joinColumns = @JoinColumn(name = "pregunta_id"), inverseJoinColumns = @JoinColumn(name = "respuesta_id"))
+    private List<Respuesta> respuestas;
+    */
 
     public Integer getId() {
         return id;
@@ -65,6 +77,15 @@ public class Pregunta {
         categoria.getPreguntas().add(this);
     }
 
+    public Respuesta getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(Respuesta respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    
    
 
 }

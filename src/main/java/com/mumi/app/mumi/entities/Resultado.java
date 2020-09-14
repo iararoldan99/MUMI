@@ -1,6 +1,5 @@
 package com.mumi.app.mumi.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +31,7 @@ public class Resultado {
     private Usuaria usuariaId;
 
     public enum IndiceViolenciaEnum {
-        LEVE(5), MODERADO(10), GRAVE(20);
+        LEVE(1), MODERADO(2), GRAVE(3); // no son Indices, son Ids 
 
         private final Integer value;
 

@@ -31,7 +31,7 @@ public class Resultado {
     private Usuaria usuariaId;
 
     public enum IndiceViolenciaEnum {
-        LEVE(1), MODERADO(2), GRAVE(3); // no son Indices, son Ids 
+        LEVE(1), MODERADO(2), GRAVE(3); // no son Indices, son Ids
 
         private final Integer value;
 
@@ -152,6 +152,5 @@ public class Resultado {
         this.scoreFinal = scoreFinal;
         this.usuariaId = usuariaId;
     }
-
 
 }

@@ -9,7 +9,6 @@ import com.mumi.app.mumi.services.RespuestaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +19,8 @@ public class RespuestaController {
     @Autowired
     RespuestaService respuestaService;
 
-    @PostMapping("/api/preguntas/{id}") // crear una respuesta a una pregunta por su id
-    public ResponseEntity<GenericResponse> crearRespuesta(@PathVariable Integer id, @RequestBody Respuesta respuesta) {
+    @PostMapping("/api/respuestas") // crear una respuesta a una pregunta por su id
+    public ResponseEntity<GenericResponse> crearRespuesta(@RequestBody Respuesta respuesta) {
   
       respuestaService.crearRespuesta(respuesta);
   
@@ -38,5 +37,7 @@ public class RespuestaController {
     public ResponseEntity<List<Respuesta>> listarRespuestas() {
         return ResponseEntity.ok(respuestaService.listarRespuestas());
     }
+
+    
 
 }

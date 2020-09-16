@@ -48,21 +48,18 @@ public class CategoriaService {
 
     }
 
-	public boolean asignarPregunta(Integer id, Integer preguntaId) {
-		Categoria c = buscarPorId(id);
+    public boolean asignarPregunta(Integer id, Integer preguntaId) {
+        Categoria c = buscarPorId(id);
 
         for (Pregunta p : c.getPreguntas()) {
             if (p.getId().equals(preguntaId))
-                return false; // Si lo encuentra no hay que hacer nadas
-            // Hay que terminar de recorrer.
+                return false;
         }
 
         c.asignarPregunta(preguntaService.obtenerPreguntaPorId(preguntaId));
 
-        // Actualizo el curso en la base de datos
-        // dejo que el repositorio haga su magia(y cruzamos los dedos)
         repoCategoria.save(c);
 
         return true;
-	}
+    }
 }

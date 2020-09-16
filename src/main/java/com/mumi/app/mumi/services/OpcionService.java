@@ -27,7 +27,7 @@ public class OpcionService {
         Opcion o = new Opcion();
         o.setId(opcionEnum.getValue());
         o.setOpcion(opcion);
-        
+
         boolean opcionCreada = crearOpcion(o);
         if (opcionCreada)
             return o;
@@ -36,7 +36,6 @@ public class OpcionService {
 
     }
 
-    
     public List<Opcion> obtenerOpciones() {
         return (opcionRepo.findAll());
 

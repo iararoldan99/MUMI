@@ -18,14 +18,12 @@ public class Usuaria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nombre;
-
     @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="cuestionario_id")
+    @PrimaryKeyJoinColumn(name = "cuestionario_id")
     private Cuestionario cuestionarioId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="resultado_id")
+    @PrimaryKeyJoinColumn(name = "resultado_id")
     private Resultado resultadoId;
 
     public Usuaria() {
@@ -65,8 +63,5 @@ public class Usuaria {
         this.cuestionarioId = cuestionarioId;
         this.resultadoId = resultadoId;
     }
-
-    
-    
 
 }

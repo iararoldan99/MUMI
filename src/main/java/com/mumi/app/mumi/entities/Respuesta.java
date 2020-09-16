@@ -1,26 +1,16 @@
 package com.mumi.app.mumi.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mumi.app.mumi.entities.Opcion.OpcionEnum;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "respuesta")
@@ -37,34 +27,12 @@ public class Respuesta {
     @Column(name = "opcion_elegida")
     private String opcionElegida;
     private Integer point; // por cada respuesta
-    @Column(name="opcion_enum")
+    @Column(name = "opcion_enum")
     private OpcionEnum opcionEnum;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="respuesta_id")
-    private Respuesta respuesta; 
-
-    /*
-    @ManyToMany(mappedBy = "respuestas")
-    private List<Pregunta> preguntas = new ArrayList<>();
-    */
-
-    public void puntosOpcion(Integer opcionElegida) {
-        switch (opcionElegida) {
-            case 1: // Opcion: NUNCA
-                setPoint(0);
-                break;
-            case 2: // Opcion: A_VECES
-                setPoint(2);
-                break;
-            case 3: // Opcion NUNCA
-                setPoint(4);
-                break;
-            default:
-                break;
-        }
-
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "respuesta_id")
+    private Respuesta respuesta;
 
     public Respuesta() {
 

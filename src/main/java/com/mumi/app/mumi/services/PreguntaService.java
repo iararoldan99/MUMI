@@ -53,6 +53,4 @@ public class PreguntaService {
         return preguntaRepo.save(pregunta);
     }
 
-   
-
 }

@@ -11,7 +11,7 @@ public class Opcion {
     @Id
     @Column(name = "opcion_id")
     private Integer id;
-    private String opcion; 
+    private String opcion;
 
     public enum OpcionEnum {
         NUNCA(1), A_VECES(2), SIEMPRE(3);
@@ -60,8 +60,8 @@ public class Opcion {
         this.opcion = opcion;
     }
 
-    public Opcion(){
-        
+    public Opcion() {
+
     }
 
 }

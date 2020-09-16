@@ -8,17 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="red_contencion")
+@Table(name = "red_contencion")
 public class RedContencion {
     @Id
-    @Column(name="red_id")
+    @Column(name = "red_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String direccion;
     private Integer numero;
     private String email;
-    @Column(name="sitio_web")
+    @Column(name = "sitio_web")
     private String sitioWeb;
 
     public RedContencion() {

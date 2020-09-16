@@ -1,5 +1,6 @@
 package com.mumi.app.mumi.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "pregunta")
@@ -27,16 +29,19 @@ public class Pregunta {
     @ManyToMany(mappedBy = "preguntas")
     private List<Categoria> categorias = new ArrayList<>();
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="pregunta_id")
-    private Respuesta respuesta; 
-
-    /*
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "respuesta_x_pregunta", joinColumns = @JoinColumn(name = "pregunta_id"), inverseJoinColumns = @JoinColumn(name = "respuesta_id"))
-    private List<Respuesta> respuestas;
-    */
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "pregunta_id")
+    private Respuesta respuesta;
+
+    @JsonCreator
+    public Pregunta(@JsonProperty("preguntaId") Integer id) {
+        this.id = id;
+        this.loadPregunta();
+    }
+
+    private void loadPregunta() {
+    }
 
     public Integer getId() {
         return id;
@@ -68,7 +73,7 @@ public class Pregunta {
         this.categorias = categorias;
     }
 
-    public Pregunta(){
+    public Pregunta() {
 
     }
 
@@ -84,8 +89,5 @@ public class Pregunta {
     public void setRespuesta(Respuesta respuesta) {
         this.respuesta = respuesta;
     }
-
-    
-   
 
 }

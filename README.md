@@ -30,5 +30,5 @@ Se utilizó Postman para probar los diferentes http methods
 
 # Documentacion 📚
 
-MUMI Documentation
+MUMI API Documentation
 

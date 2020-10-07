@@ -15,29 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RespuestaController {
-    
-    @Autowired
-    RespuestaService respuestaService;
 
-    @PostMapping("/api/respuestas") // crear una respuesta a una pregunta por su id
-    public ResponseEntity<GenericResponse> crearRespuesta(@RequestBody Respuesta respuesta) {
-  
-      respuestaService.crearRespuesta(respuesta);
-  
-      GenericResponse r = new GenericResponse();
-      r.isOk = true;
-      r.message = "Respuesta Creada con exito";
-      r.id = respuesta.getId();
-  
-      return ResponseEntity.ok(r);
-  
-    }
+  @Autowired
+  RespuestaService respuestaService;
 
-    @GetMapping("/api/respuestas")
-    public ResponseEntity<List<Respuesta>> listarRespuestas() {
-        return ResponseEntity.ok(respuestaService.listarRespuestas());
-    }
+  @PostMapping("/api/respuestas") // crear una respuesta a una pregunta por su id
+  public ResponseEntity<GenericResponse> crearRespuesta(@RequestBody Respuesta respuesta) {
 
-    
+    respuestaService.crearRespuesta(respuesta);
+
+    GenericResponse r = new GenericResponse();
+    r.isOk = true;
+    r.message = "Respuesta Creada con exito";
+    r.id = respuesta.getId();
+
+    return ResponseEntity.ok(r);
+
+  }
+
+  @GetMapping("/api/respuestas")
+  public ResponseEntity<List<Respuesta>> listarRespuestas() {
+    return ResponseEntity.ok(respuestaService.listarRespuestas());
+  }
 
 }
